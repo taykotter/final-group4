@@ -10,6 +10,9 @@
 version: '3.7'
 
 services:
+  
+    
+
   zookeeper:
     image: confluentinc/cp-zookeeper:5.5.1
     ports:
@@ -30,6 +33,20 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: "1"
     depends_on:
     - "zookeeper"
+
+    stedi:
+     image: scmurdock/stedi
+     ports:
+     - "4567:4567"
+     environment:
+      REDIS_HOST: ""
+      REDIS_PORT: ""
+      REDIS_DB: ""
+      KAFKA_BROKER: ""
+      KAFKA_RISK_TOPIC: ""
+      depends_on:
+      - 
+
 
   schema-registry:
     image: confluentinc/cp-schema-registry:5.2.2
