@@ -12,7 +12,6 @@ version: '3.7'
 services:
   
     
-
   zookeeper:
     image: confluentinc/cp-zookeeper:5.5.1
     ports:
@@ -39,13 +38,14 @@ services:
      ports:
      - "4567:4567"
      environment:
-      REDIS_HOST: ""
-      REDIS_PORT: ""
-      REDIS_DB: ""
-      KAFKA_BROKER: ""
-      KAFKA_RISK_TOPIC: ""
+      REDIS_HOST: "redis"
+      REDIS_PORT: "6379"
+      REDIS_DB: "0"
+      KAFKA_BROKER: "kafka:19092"
+      KAFKA_RISK_TOPIC: "customer-risk-topic"
       depends_on:
-      - 
+      - "kafka"
+      - "redis"
 
 
   schema-registry:
